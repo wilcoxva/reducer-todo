@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from 'react';
-import { todoReducer, initialState } from './reducers/reducer'
+import { todoReducer, initialState } from './reducers/reducer';
 
 
 const App = () => {
@@ -11,19 +11,13 @@ const App = () => {
   };
 
   const handleChanges = e => {
-    let newValue = { [e.target.name]: e.target.value }
-    setValue(newValue)
+    setValue(e.target.value)
   };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    addTodo(value);
-  }
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="todo" onChange={handleChanges}/>
+      <form>
+        <input type="text" name="todo" value={value} onChange={handleChanges}/>
         <button onClick={addTodo}>Add</button>
       </form>
       <div>
