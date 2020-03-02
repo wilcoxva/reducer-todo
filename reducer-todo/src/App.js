@@ -6,8 +6,9 @@ const App = () => {
   const [value, setValue] = useState("");
   const [state, dispatch] = useReducer(todoReducer, initialState);
 
-  const addTodo = (item) => {
-    dispatch({ type: "ADD_TODO", payload: item });
+  const addTodo = (e) => {
+    e.preventDefault()
+    dispatch({ type: "ADD_TODO", payload: value });
   };
 
   const handleChanges = e => {
@@ -16,9 +17,9 @@ const App = () => {
 
   return (
     <div>
-      <form>
-        <input type="text" name="todo" value={value} onChange={handleChanges}/>
-        <button onClick={addTodo}>Add</button>
+      <form onSubmit={addTodo}>
+        <input type="text" name="value" value={value} onChange={handleChanges}/>
+        <button>Add</button>
       </form>
       <div>
         {state.todos.map(todo => {
